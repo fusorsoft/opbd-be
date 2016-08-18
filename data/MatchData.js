@@ -5,7 +5,6 @@ var BreakdownMetadata = require('../models/BreakdownMetadata.js');
 var PlayerData = require('../models/PlayerData.js');
 var PlayerMatchData = require('../models/PlayerMatchData.js');
 
-
 var matchSummaryFields = [
 	'playerData.SteamID',
 	'playerData.Name',

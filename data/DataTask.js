@@ -5,7 +5,6 @@ var Mongoose = require('mongoose');
 var DataTask = require('../models/DataTask.js');
 
 var saveTask = function(userId, status) {
-
 	var deferred = Q.defer();
 
 	var task = new DataTask();
