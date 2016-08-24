@@ -11,6 +11,5 @@ module.exports = function(passport, auth) {
 		});
 	});
 
-
 	return router;
 };

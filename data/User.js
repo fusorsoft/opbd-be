@@ -150,6 +150,39 @@ var setEmailAddress = function(steamId, email) {
 	return deferred.promise;
 };
 
+var updateRoles = function(steamId, roles) {
+	var deferred = Q.defer();
+
+	var allowedRoles = ['admin', 'user', 'visitor'];
+
+	for(var i = 0, j = roles.length; i < j; i++) {
+		if (allowedRoles.indexOf(roles[i]) === -1) {
+			deferred.reject({'message' : 'unknown role: ' + roles[i]});
+		}
+	}
+
+	Q(User.findOne(
+		{
+			'steamID': steamId
+		}
+	).exec()).then(function(user) {
+		
+		user.roles = roles;
+		
+		Q(user.save().exec()).then(function() {
+			deferred.resolve();
+		}, function(err) {
+			deferred.reject(err);
+		});
+
+	}, function(err) {
+		deferred.reject(err);
+	});
+	deferred.resolve('ok');
+
+	return deferred.promise;
+};
+
 module.exports = {
 	getUsers: getUsers,
 	getUserInfoByUserId: getUserInfoByUserId,
@@ -157,4 +190,5 @@ module.exports = {
 	addFriend: addFriend,
 	removeFriend: removeFriend,
 	setEmailAddress: setEmailAddress,
+	updateRoles: updateRoles,
 };

@@ -109,6 +109,21 @@ module.exports = function(passport, auth) {
 		}
 	});
 
+	router.post('/:userid/roles', auth.isAuthenticated, auth.isAuthorized('admin'), function(req, res) {
+		var userid = req.params.userid;
+		var roles = req.body.roles;
+		User.updateRoles(userid, roles).then(function() {
+			res.status(204).end();
+		}, function(err) {
+			var status = 500;
+
+			if (err.message && err.message.indexOf('unknown role') > -1) {
+				status = 400;
+			}
+			res.status(status).json(err).end();
+		});
+	});
+
 	router.delete('/:userid/friends/:friendId', auth.apiIsAuthenticated, function(req, res) {
 		if (req.user.steamID !== req.params.userid) {
 			res.status(401).json({
