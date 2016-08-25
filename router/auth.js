@@ -1,4 +1,4 @@
-var UserModel = require('../models/user');
+var UserModel = require('../models/User');
 
 module.exports = function() {
 	var isAuthenticated = function(req, res, next) {

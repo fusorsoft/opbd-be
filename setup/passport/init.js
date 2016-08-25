@@ -1,5 +1,5 @@
 var initSteam = require('./initSteam');
-var UserModel = require('../../models/user');
+var UserModel = require('../../models/User');
 
 module.exports = function(passport) {
 

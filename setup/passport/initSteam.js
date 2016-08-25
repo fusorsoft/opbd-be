@@ -1,5 +1,5 @@
 var SteamStrategy = require('passport-steam').Strategy;
-var UserModel = require('../../models/user');
+var UserModel = require('../../models/User');
 var settings = require('../../../settings')();
 var uuid = require('node-uuid');
 

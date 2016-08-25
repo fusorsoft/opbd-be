@@ -1,7 +1,8 @@
 var Mongoose = require('mongoose');
-var FriendSchema = require('./friend').schema;
+var Schema = Mongoose.Schema;
+var FriendSchema = require('./Friend').schema;
 
-module.exports = Mongoose.model('User', {
+var userSchema = new Schema({
 	username: String,
 	email: String,
 	contactOnRelese: Boolean,
@@ -15,3 +16,6 @@ module.exports = Mongoose.model('User', {
 	friendlyUrl: String,
 	roles: [String]
 });
+
+
+module.exports = Mongoose.model('User', userSchema);
