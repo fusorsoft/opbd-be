@@ -40,6 +40,13 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	app.get('/client', auth.isAuthenticated, auth.isAuthorized('user'), function(req, res) {
+		res.render('client', {
+			title: 'Client',
+			user: req.user,
+		});
+	});
+
 	app.get('/credits', function(req, res) {
 		res.render('credits', {
 			title: 'Credits',
