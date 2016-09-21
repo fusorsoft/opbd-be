@@ -183,6 +183,46 @@ var updateRoles = function(steamId, roles) {
 	return deferred.promise;
 };
 
+var getTopUsers = function(limit) {
+	var deferred = Q.defer();
+
+	Q(MatchData.aggregate([
+		{
+			$group: {
+				 _id: '$playerData.SteamID', 
+				 count: { $sum: 1 }, 
+				 name: { $last: '$playerData.Name'}
+			}
+		},
+		{
+			$unwind: '$_id'
+		},
+		{
+			$lookup: {
+				from: 'users',
+				localField: '_id',
+				foreignField: 'steamID',
+				as: 'user'
+			}
+		},
+		{
+			$unwind: '$user'
+		},
+		{
+			$sort: { 'count' : -1 }
+		}, 
+		{
+			$limit: limit
+		}
+	]).exec()).then(function(data) {
+		deferred.resolve(data);
+	}, function(err) {
+		deferred.reject(err);
+	});
+
+	return deferred.promise;
+};
+
 module.exports = {
 	getUsers: getUsers,
 	getUserInfoByUserId: getUserInfoByUserId,
@@ -191,4 +231,5 @@ module.exports = {
 	removeFriend: removeFriend,
 	setEmailAddress: setEmailAddress,
 	updateRoles: updateRoles,
+	getTopUsers: getTopUsers,
 };

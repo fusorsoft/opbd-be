@@ -15,7 +15,7 @@ module.exports = function(passport, auth) {
 		});
 	});
 
-	router.get('/:userid', auth.isAuthenticated, auth.isAuthorized('user'), function(req, res) {
+	router.get('/:userid', function(req, res) {
 		var userid = req.params.userid;
 		res.render('matchData', {
 			title: 'Match Data',

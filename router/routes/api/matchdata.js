@@ -43,7 +43,7 @@ module.exports = function(passport, auth) {
 			});
 	};
 
-	router.get('/summary/:type/:id', auth.isAuthenticated, function(req, res) {
+	router.get('/summary/:type/:id', function(req, res) {
 		var queryId = req.params.id;
 		var queryField = req.params.type;
 
@@ -84,7 +84,7 @@ module.exports = function(passport, auth) {
 		}
 	});
 
-	router.get('/details/:playerMatchId', auth.isAuthenticated, function(req, res) {
+	router.get('/details/:playerMatchId', function(req, res) {
 
 		MatchData.getMatchDetailsById(req.params.playerMatchId).then(function(data) {
 			res.status(200).json(data).end();

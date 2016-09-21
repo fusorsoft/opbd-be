@@ -6,9 +6,29 @@ var Q = require('q');
 
 module.exports = function(passport, auth) {
 
+	router.get('/top', function(req, res) {
+
+		var limit = parseInt(req.query.limit);
+
+		if (!Number.isInteger(limit)) {
+			res.status(400).json({
+				'error': 'limit must be an integral value'
+			}).end();
+		}
+		//var limit = Number.isInteger(req.query.limit) ? parseInt(req.query.limit) : 10;
+
+		User.getTopUsers(limit).then(function(data) {
+			res.status(200).json(data).end();
+		}, function(err) {
+			res.status(500).json({
+				'error': 'error retrieving top users'
+			}).end();
+		});
+	});
+
 	// get friend information for the specified user...
 
-	router.get('/:userid/friends', auth.apiIsAuthenticated, function(req, res) {
+	router.get('/:userid/friends', function(req, res) {
 		User.getFriends(req.params.userid)
 		.then(function(friendData) {
 
@@ -20,7 +40,7 @@ module.exports = function(passport, auth) {
 		});
 	});
 
-	router.get('/:userid', auth.apiIsAuthenticated, function(req, res) {
+	router.get('/:userid', function(req, res) {
 		User.getUserInfoByUserId(req.params.userid).then(function(data) {
 			if (data === null) {
 				res.status(204).end();
