@@ -209,6 +209,16 @@ var getTopUsers = function(limit) {
 			$unwind: '$user'
 		},
 		{
+			$project: {
+				"name": true,
+				"count": true,
+				"user.avatar": true,
+				"user.avatarFull": true,
+				"user.avatarMedium": true,
+				"user.username": true,	
+			}
+		},
+		{
 			$sort: { 'count' : -1 }
 		}, 
 		{

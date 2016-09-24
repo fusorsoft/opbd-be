@@ -21,7 +21,8 @@ module.exports = function(passport, auth) {
 			res.status(200).json(data).end();
 		}, function(err) {
 			res.status(500).json({
-				'error': 'error retrieving top users'
+				'error': 'error retrieving top users',
+				'i': err
 			}).end();
 		});
 	});

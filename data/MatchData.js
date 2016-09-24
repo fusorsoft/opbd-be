@@ -258,7 +258,7 @@ var getPlayerFromMatchQuery = function(query, limit) {
 		var steamIdPromises = [];
 
 		var nameSubset = nameData.sort(function(a,b) { 
-				return ((a.indexOf(query) === 0 && b.indexOf(query) !== 0) || a.length - b.length);
+				return (a.length - b.length);
 			}).slice(0, parseInt(limit)); // 10 is magical..
 
 		for (var i = 0; i < nameSubset.length; i++) {
