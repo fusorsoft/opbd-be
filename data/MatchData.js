@@ -27,6 +27,12 @@ var matchSummaryFields = [
 	'playerData.CTWins',
 	'playerData.InitialRank',
 	'playerData.FinalRank',
+	'playerData.WeaponData.Weapon',
+	'playerData.WeaponData.HeadShots',
+	'playerData.WeaponData.ShotsFired',
+	'playerData.WeaponData.HeadshotKills',
+	'playerData.WeaponData.Kills',
+	'playerData.WeaponData.ShotsHit',
 	'demoFileMetadata.Created',
 	'matchMetadata.MapName',
 	'breakdownMetadata.breakdownMatchId'
