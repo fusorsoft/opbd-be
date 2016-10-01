@@ -195,6 +195,12 @@ var getTopUsers = function(limit) {
 			}
 		},
 		{
+			$sort: { 'count' : -1 }
+		}, 
+		{
+			$limit: limit
+		},
+		{
 			$unwind: '$_id'
 		},
 		{
@@ -217,12 +223,6 @@ var getTopUsers = function(limit) {
 				"user.avatarMedium": true,
 				"user.username": true,	
 			}
-		},
-		{
-			$sort: { 'count' : -1 }
-		}, 
-		{
-			$limit: limit
 		}
 	]).exec()).then(function(data) {
 		deferred.resolve(data);
