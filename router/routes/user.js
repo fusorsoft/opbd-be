@@ -5,51 +5,12 @@ var express = require('express'),
 
 module.exports = function(passport, auth) {
 
-	router.get('/:userid/Profile', auth.isAuthenticated, function(req, res) {
-		var userid = req.params.userid;
-
-		res.render('profile', {
-			title: 'Profile',
-			user: req.user,
-			userid: userid,
-		});
-	});
-
-	router.get('/:userid', function(req, res) {
-		var userid = req.params.userid;
-		res.render('matchData', {
-			title: 'Match Data',
-			user: req.user,
-			userid: userid,
-		});
-	});
-
 	router.get('/Logout', function(req, res) {
 		// allow logout on GET because why not
 		req.logOut();
+		req.session.destroy();
 		res.redirect("/");
 	});
-
-	// GET (new user form)
-	router.get('/New', function(req, res) {
-		res.render('newAccount', {
-			title: 'Create Account',
-			user: req.user,
-		});
-	});
-
-	// POST (create user)
-	router.post('/New', passport.authenticate('signup', {
-		successRedirect: '/',
-		failureRedirect: '/',
-		failureFlash: true
-	}));
-
-	router.post('/Login', passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/',
-		failureFlash: true
-	}));
 
 	// steam/openID
 	router.get('/Login/Steam', passport.authenticate('steam'), function(req, res) {
@@ -76,6 +37,26 @@ module.exports = function(passport, auth) {
 
 			res.redirect(redirectUrl);
 		})(req,res,next);
+	});
+
+	router.get('/:userid/Profile', auth.isAuthenticated, function(req, res) {
+		var userid = req.params.userid;
+
+		res.render('profile', {
+			title: 'Profile',
+			user: req.user,
+			userid: userid,
+		});
+	});
+
+	router.get('/:userid', function(req, res) {
+		var userid = req.params.userid;
+		req.session.lastVisit = new Date();
+		res.render('matchData', {
+			title: 'Match Data',
+			user: req.user,
+			userid: userid,
+		});
 	});
 
 	return router;

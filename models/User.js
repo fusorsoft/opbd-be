@@ -14,7 +14,7 @@ var userSchema = new Schema({
 	avatarMedium: String,
 	avatarFull: String,
 	friendlyUrl: String,
-	roles: [String]
+	roles: [String],
 });
 
 
