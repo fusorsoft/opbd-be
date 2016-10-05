@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var User = require('../models/User');
+var User = mongoose.model("User");
 var Friend = require('../models/Friend.js');
 var MatchData = require('../models/PlayerMatchData.js');
 var MatchData = mongoose.model("PlayerMatchData");
@@ -9,13 +10,36 @@ var mailer = require('../utils/mailer');
 
 var getUsers = function() {
 	var deferred = Q.defer();
-
-	Q(User.find({}).lean().exec()).then(function(data) {
+        
+	Q(User.aggregate([
+		{
+			$lookup: {
+				from: 'sessions',
+				localField: "_id",
+				foreignField: "passport.user",
+				as: "session"
+			}
+		},
+		{
+			$project: {
+				'username': true,
+				'steamID': true,
+				'avatar': true,
+				'roles': true,
+				'email': true,
+				'session.lastAccess': true,
+			}
+		}
+	]).exec()).then(function(data) {
 		deferred.resolve(data);
-	},
-	function(err) {
-		deferred.reject(err);
 	});
+
+	// User.find({}).lean().then(function(data) {
+	// 	deferred.resolve(data);
+	// },
+	// function(err) {
+	// 	deferred.reject(err);
+	// });
 
 	return deferred.promise;
 };
