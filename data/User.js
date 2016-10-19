@@ -34,13 +34,6 @@ var getUsers = function() {
 		deferred.resolve(data);
 	});
 
-	// User.find({}).lean().then(function(data) {
-	// 	deferred.resolve(data);
-	// },
-	// function(err) {
-	// 	deferred.reject(err);
-	// });
-
 	return deferred.promise;
 };
 
