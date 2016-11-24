@@ -20,6 +20,7 @@ module.exports = function(passport, auth) {
 		User.getTopUsers(limit).then(function(data) {
 			res.status(200).json(data).end();
 		}, function(err) {
+			console.error("Error getting top users", err);
 			res.status(500).json({
 				'error': 'error retrieving top users',
 				'i': err
@@ -112,7 +113,7 @@ module.exports = function(passport, auth) {
 				// check if this is a rate limit error...
 				var limitedIndex = -1;
 				var isLimited = err.some(function(e, index) {
-					
+
 					if (e.message.indexOf('Too many tries') > -1) {
 						limitedIndex = index;
 						return true;
