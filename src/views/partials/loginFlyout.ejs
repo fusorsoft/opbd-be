@@ -1,0 +1,27 @@
+<div id="loginFlyout" class="ob-hidden">
+	<form id="loginForm" class="ob-form-stacked" action="/User/Login" method="post">
+		<fieldset>
+			<legend class="obLegend">Login</legend>
+
+			<input type="text" name="username" required="required" placeholder="Username"/>
+
+			<input type="password" name="password" required="required" placeholder="Password"/>
+
+			<button type="submit" class="ob-button-primary">Log In</button>
+		</fieldset>
+	</form>
+
+	<div class="steamLogin">
+		<a href="/User/Login/Steam"><img src="/assets/images/sits_small.png"/></a>
+	</div>
+
+	<div>
+		<a href="/User/New">Create Account</a>
+	</div>
+
+	<% if (message) { %>
+		<div class="errorMessage">
+			<%= message %>
+		</div>
+	<% } %>
+</div>

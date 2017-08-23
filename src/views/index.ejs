@@ -1,0 +1,124 @@
+<% layout('layouts/home') -%>
+
+<div class="ob-hero">
+
+	<div><img src="/assets/images/opbreakdownlogo.png"/></div>
+
+	<div data-ng-controller="searchController" class="ob-search-container">
+		<h1>Join the Operation</h1>
+		<ob-typeahead search-term="searchTerm" search-data="autocompleteValues" modified-fn="onQueryModified()" selected-fn="onItemSelected"></ob-typeahead>
+
+		<div>
+			<div>OR</div>
+			<a href="/User/Login/Steam"><img src="/assets/images/sits_large_noborder.png"/></a>
+			<br/>
+			<i class="ob-tooltip fa fa-question-circle" aria-hidden="true"
+					tooltips
+					tooltip-template="Operation Breakdown never sees your username or password."
+					tooltip-smart="true"
+					tooltip-side="right"
+					tooltip-size="large">
+				</i>
+		</div>
+	</div>
+</div>
+
+<div id="ob-home-content" class="ob-home-section">
+	<h2>Top Users</h2>
+
+	<div class="ob-top-users" id="topUsers" data-ng-controller="topUsersController">
+		<a ng-repeat="user in topUsers" class="ob-top-user ob-block-button" href="/User/{{user._id}}">
+			<div>
+				<img ng-src="{{user.user.avatarMedium}}" ng-if="user.user"/>
+			</div>
+			<div>
+				<p>{{user.name[0]}}</p>
+				<p><em>{{user.count}} Matches</em></p>
+			</div>
+		</a>
+
+	</div>
+
+
+	<h2>What is Operation Breakdown?</h2>
+
+	<p>Step up your game with Operation Breakdown.  Operation Breakdown takes your GOTV demos
+	for Counter Strike: Global Offensive and extracts meaningful statistics to help you understand
+	where you and your team need to improve. Operation Breakdown was created to address two simultaneous
+	pain points compared to existing demo analyzers -- the alternatives either limit WHERE you can view
+	your demo statistics, or WHEN the demos can be from.  Operation Breakdown takes your downloaded demos
+	and makes the stats from them available online.
+	</p>
+</div>
+
+<div id="ob-how-it-works" class="ob-home-section">
+	<h2>How does it work?</h2>
+
+	<div>
+		<div>
+			<div class="ob-centered"><i class="fa fa-download" aria-hidden="true"></i></div>
+			<p >Sign in through Steam to create your account, then download the client application.</p>
+		</div>
+		<div>
+			<div class="ob-centered"><i class="fa fa-folder-open" aria-hidden="true"></i></div>
+			<p>Point the client application at your downloaded demos folder.</p>
+		</div>
+		<div>
+			<div class="ob-centered"><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
+			<p>Analyze the data. The client application breaks down the demo and compiles meaningful statistics.</p></div>
+		<div>
+			<div class="ob-centered"><i class="fa fa-line-chart" aria-hidden="true"></i></div>
+			<p>Dig in!  Use the statistics to gain an understanding of how you or your team need to improve.</p>
+		</div>
+	</div>
+
+</div>
+
+
+<div id="ob-key-features" class="ob-home-section">
+	<h2>Key Features</h2>
+
+	<img class="ob-fluff-image ob-pull-left" src="/assets/images/placeit (1).jpg" alt="match detail screen"/>
+
+
+	<h3>You do the processing</h3>
+	<p>
+		Using the client application, all of the heavy lifting is done on your computer.  This means
+		that unlike other sites, there is no waiting in line while the servers strain under load
+		from processing everyone else's demos.  Just analyze, upload, and dig in immediately.
+	</p>
+
+	<h3>It works with your saved demos</h3>
+
+	<p>
+		Match sharing codes expire after 28 days.  Your saved demos last forever.  We can take all
+		those demos you've been saving up and compile statistics for every one of them.  During the
+		beta go ahead and keep holding on to them, as new features may require reprocessing.
+	</p>
+
+	<div class="ob-clear"></div>
+
+	<img class="ob-fluff-image ob-pull-right" src="/assets/images/placeit (2).jpg" alt="gamer with two devices"/>
+
+	<h3>Your data, where you want it</h3>
+
+	<p>
+		Whether you're bootcamping in Barcelona, bored on a bus, or enjoying a beer at the bar,
+		access your data from any device and any location.
+	</p>
+
+	<h3>It's fast</h3>
+	<p>
+		All of the hard work is done up front, one time.  Once your data is up on the site, you'll
+		have instant access to all of your stats.  The information is also sharable; you can easily
+		give your friends and teammates a link to a breakdown. Brag about a great game, or help
+		explain areas for improvement.  The possiblities are endless.
+	</p>
+
+	<h3>Join the Operation</h3>
+
+	<p>
+		You may have data already waiting for you.  When a fellow gamer uploads data for a match you
+		played in, it will automatically be made available to you.
+	</p>
+</div>

@@ -1,0 +1,86 @@
+<% if (user) { %>
+<div id="ob-feedback-form-container" class="closed">
+	<div id="ob-feedback-toggle">
+		<div class="vertical-text">
+				Feedback
+		</div>
+	</div>
+	<div id="ob-feedback-form">
+		<toaster-container></toaster-container>
+		<p class='lead'>
+			Your feedback is appreciated.
+		</p>
+
+		<form role="form" class="ob-form-stacked" data-ng-controller="feedbackController">
+			<div class="form-group">
+				<label for='feedback-subject'>Subject</label>
+				<input type='text' class='form-control required' id='feedback-subject' data-ng-model="subject" placeholder='Brief Description'/>
+			</div>
+			<div class="form-group">
+				<label for='feedback-message'>Detailed Message</label>
+				<textarea class='form-control required' id='feedback-message' data-ng-model="message" placeholder='Feedback Details' rows="5"></textarea>
+			</div>
+			<div class="form-group">
+				<label for='url'>URL</label>
+				<input type='text' class="form-control" readonly="true" id="url" data-ng-model="url"/>
+			</div>
+			<div class="form-button-container">
+				<input type="button" class="ob-button-primary" ng-disabled="subject.length == 0 || message.length == 0" id ='submit' value='Submit' data-ng-click="submitFeedback()"/>
+			</div>
+		</form>
+	</div>
+</div>
+
+<% } %>
+
+<footer>
+		<div>
+			<h3>Info</h3>
+			<div class="ob-centered">
+				<a href="http://www.fusorsoft.com"><img src="/assets/images/fusorSmallLogo.png"/></a>
+			</div>
+			<div>
+				<a href="http://www.fusorsoft.com">&copy;2016 Fusorsoft</a>
+			</div>
+			<div>
+				<a href="/credits">Credits</a>
+			</div>
+		</div>
+		<div>
+			<h3>Legal</h3>
+			<div>
+				<a href="/privacy">Privacy Policy</a>
+			</div>
+			<div>
+				<a href='mailto:contact@operation-breakdown.com'>Contact Us</a>
+			</div>
+		</div>
+		<div>
+			<h3>Powered By</h3>
+			<div>
+				<a href="http://steampowered.com" target="blank">Powered by Steam</a>
+			</div>
+			<div>
+				<em style="font-size: 0.6em">This site is not associated with Valve Corp.</em>
+			</div>
+		</div>
+		<div>
+			<h3>Donate</h3>
+			<div>
+				Your <a href="/donate">donations</a> are appreciated.
+			</div>
+		</div>
+</footer>
+
+<script type="text/javascript" src="/js/opBDglobal.js"></script>
+<script type="text/javascript">
+	WebFont.load({
+		google: {
+			families: ['Raleway', 'Open Sans']
+		},
+		custom: {
+			families: ['FontAwesome'],
+			urls: ['/styles/lib/font-awesome/css/font-awesome.min.css']
+		}
+	});
+</script>

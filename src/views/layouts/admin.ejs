@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+	<% include ../partials/head.ejs %>
+	<link rel="stylesheet" type="text/css" href="/styles/main/breakdown.css"/>
+</head>
+<body>
+
+	<div class="ob-home">
+		<% include ../partials/navigation %>
+
+		<header>
+			<img src="/assets/images/opbreakdownlogo-horizontal.png"/>
+		</header>
+
+		<%- body %>
+
+	</div>
+
+	<div id="content">
+		<div data-ng-app="adminApp" id="breakdownContent">
+			<div class="breakdown-banner">
+				<ng-include src="'/ng-partials/admin/Navigation/adminNav.html'"/>
+			</div>
+
+			<div data-ng-view></div>
+
+			<toaster-container></toaster-container>
+		</div>
+	</div>
+
+
+	<script src="/js/opBDadmin.js"></script>
+	<% include ../partials/footer.ejs %>
+</body>
+</html>

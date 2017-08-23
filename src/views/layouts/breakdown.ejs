@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+	<% include ../partials/head.ejs %>
+	<link rel="stylesheet" type="text/css" href="/styles/main/breakdown.css"/>
+
+	<style>
+
+		#breakdownContent {
+			background-image: url(<%- "/assets/images/backgrounds/" + Math.floor((Math.random() * 8) + 1) + ".jpg" %>);
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-color: inherit;
+			background-size: 100% 100%;
+			background-position: center center;
+			transition: background-image 0.8s ease-in-out;
+		}
+
+		#breakdownContent >div:not(:first-child) {
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+
+	</style>
+</head>
+<body>
+	<!-- safari is the new IE.... -->
+	<div class="ob-scroll-container">
+
+		<div class="ob-home">
+			<% include ../partials/navigation %>
+
+			<header>
+				<a href="/"><img src="/assets/images/opbreakdownlogo-horizontal.png"/></a>
+			</header>
+
+			<%- body %>
+
+		</div>
+
+		<div id="content">
+			<div id="loadingOverlay" class="ob-loading-overlay">
+				<img src="/assets/images/ajax-loader.gif"/>
+				<div><strong>Loading...</strong></div>
+			</div>
+
+			<div id="breakdownContent" data-ng-app="breakdownApp" data-ng-controller="breakdownAppController">
+				<div class="breakdown-banner">
+					<ng-include src="'/ng-partials/breakdown/Navigation/breakdownNav.html'"/>
+				</div>
+
+				<div class="ob-horizontal-ad-container">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Responsive Ad 1 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5941170862103259"
+					     data-ad-slot="3636265725"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+
+				<div data-ng-view></div>
+
+				<div class="ob-horizontal-ad-container">
+					<!-- Large Horizontal -->
+					<!-- Responsive Ad 1 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5941170862103259"
+					     data-ad-slot="3636265725"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+		</div>
+
+		<script src="/js/opBDbreakdown.js"></script>
+		<% include ../partials/footer.ejs %>
+
+	</div>
+</body>
+</html>

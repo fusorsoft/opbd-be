@@ -1,0 +1,73 @@
+<% layout('layouts/fullwidth2') -%>
+
+<h2>About Operation Breakdown</h2>
+
+<p>
+Operation Breakdown is a web-based repository for storing data gathered by parsing demo
+files provided by valve from the game Counter Strike: Global Offensive.  The basic idea
+is that a parsing tool goes over the demo file compiling statistics based on in-game events.
+The results of that parsing are submitted to this site, where users will be able to review
+a detailed breakdown of their performance during a match.
+</p>
+
+<p>
+Currently a command line application uses the parsing library to generate a json file containing
+the match data. In its current state, the web site allows the user to log in either by creating
+a user account, or using Steam openID.  The user can navigate to a page, and point a file input at
+the generated json.  The HTML5 file api is used to pull the data in to angular and submit it to an
+api stub for processing
+</p>
+
+<p>
+Due to expected demand, the amount of processing required to compile statistics, and the raw file size of the demo files (75-200mb), the architectural decision was made to have the client do the processing and submit the data to the server.  This prevents the server from having to do intensive computation, uses far less bandwidth (compiled stats are less than 1mb) for a large amount of users - something that has doomed similar projects in the past.
+</p>
+
+<p>
+There is still much work to be completed  The current road map looks something like this:
+</p>
+
+<ol>
+	<li class="ob-work-complete">Fill in data insertion api method stub</li>
+	<li class="ob-work-complete">Complete data retrieval api</li>
+	<li class="ob-work-complete">Complete rudimentary front-end for viewing statistics</li>
+	<li class="ob-work-complete">Limited alpha</li>
+	<li class="ob-work-complete">Create client application for completing the parsing</li>
+	<li>Invite-only beta</li>
+	<li>Corroboration framework</li>
+	<li>Achievement framework</li>
+	<li>Automatic match download/parse/upload cycle</li>
+	<li>Advanced statistics and analysis</li>
+</ol>
+
+<h2>Technology Stack</h2>
+
+<p>Operation Breakdown uses a basic MEAN stack</p>
+
+<h3>Web Site</h3>
+
+<ul>
+	<li>NodeJS - back end</li>
+	<li>Express - routing, serving</li>
+	<li>Passport - authentication, openID</li>
+	<li>MongoDB - data storage</li>
+	<li>AngularJS - front end</li>
+	<li>ejs - templating</li>
+</ul>
+
+<h3>ALM/Environment (Web Site)</h3>
+
+<ul>
+	<li>GitLab - source control, issue tracking</li>
+	<li>Gulp - task runner</li>
+	<li>Karma/PhantomJS - front end test driver</li>
+	<li>Jasmine - unit testing</li>
+	<li>Sass - stylesheets</li>
+	<li>Sublime Text - "IDE"</li>
+	<li>Bower - front end libraries</li>
+	<li>npm - backend libraries</li>
+</ul>
+
+<h3>Parser/Client</h3>
+
+<p>The parser is written in C# using Visual Studio 2015 Community.  Unit testing is done using MSTest.</p>
+<p>The alpha upload client is a WinForms application written in C#</p>

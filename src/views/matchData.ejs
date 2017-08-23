@@ -1,0 +1,8 @@
+<% layout('layouts/breakdown') -%>
+
+<script type="text/javascript">
+	_obContextInfo = {
+		userSteamId: <%- JSON.stringify(userid) %>,
+		currentUserSteamId: <%- user ? JSON.stringify(user.steamID) : 'null' %>,
+	}
+</script>

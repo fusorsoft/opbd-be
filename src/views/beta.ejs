@@ -1,0 +1,71 @@
+<% layout('layouts/home') -%>
+
+<style type="text/css">
+.ob-email-container {
+	width: 500px;
+	background-color: #333;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+	position: relative;
+	color: rgba(255,255,255,0.8);
+}
+
+.ob-email-container h1 {
+	margin-top: auto;
+}
+
+.ob-email-container input {
+	width: 80%;
+	height: 1.5em;
+	font-size: 1.5em;
+}
+
+.ob-email-container >div {
+	margin-top: 1em;
+}
+
+</style>
+
+<div class="ob-body">
+
+	<div class="ob-centered"><img src="/assets/images/opbreakdownlogo.png"/></div>
+	
+	<div class="ob-signin-container">
+		
+		<div>
+		
+			<h1>Oops!</h1>
+			<h2>We're not quite ready yet...</h2>
+			<p>
+				Operation Breakdown is currently in closed, invite-only beta.  If you leave your email address, we'll let you
+				know when we're ready for the world.
+			</p>
+			<p>
+				We respect the inbox, so a confirmation email will be sent.  After that, you won't hear from us until the launch
+				is imminent.
+			</p>
+		</div>
+	
+		<div class="ob-email-container" data-ng-app="breakdownBetaEmailApp" data-ng-controller="emailAppController">
+			<h2>Let us contact you.</h2>
+			<p>
+				We won't share your email address with anyone.
+			</p>
+			<div>
+				<input type="email" placeholder="Enter your email address" data-ng-model="email" ng-change="emailChanged()"/>
+			</div>
+			<div class="ob-centered">
+				<button class="ob-button-primary" ng-click="submitEmailAddress()" ng-disabled="emailSent">Submit</button>
+			</div>
+			<div ng-show="emailSent">
+				<p>Retry in {{retryTimer}} seconds</p>
+				<p>
+					Didn't receieve the email?  Give it a few minutes, then try again with this email address.  Or change the email address and try again now.
+				</p>
+			</div>
+
+			<toaster-container></toaster-container>
+		</div>
+	</div>
+</div>

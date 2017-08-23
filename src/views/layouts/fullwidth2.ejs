@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<% include ../partials/head.ejs %> 
+	<link rel="stylesheet" type="text/css" href="/styles/main/home.css"/>
+</head>
+<body>
+
+	<div class="ob-home">
+
+		<% include ../partials/navigation %>
+
+		<header>
+			<a href="/"><img src="/assets/images/opbreakdownlogo-horizontal.png"/></a>
+		</header>
+		
+		<div class="ob-content">
+			<div class="left">
+				<%- body %>
+			</div>
+			<div class="right">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- Responsive Ad 1 -->
+				<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-5941170862103259"
+				     data-ad-slot="3636265725"
+				     data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+		</div>
+
+		<% include ../partials/footer.ejs %>	
+	</div>
+</body>
+</html>

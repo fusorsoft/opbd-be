@@ -1,0 +1,87 @@
+<% layout('layouts/fullwidth2') -%>
+
+<div>
+	<h1>Download the Operation Breakdown Client</h1>
+
+	<div class="ob-warning-notification">
+		<i class="fa fa-exclamation-circle" aria-hidden="true"></i> If SmartScreen is enabled, Windows will warn you several times that this app could be dangerous.  We're working to get the warning removed.
+	</div>
+
+	<p>
+		Operation Breakdown uses a client application to parse your saved demos, then uploads the parsed data to our servers.
+		This helps us keep costs down by not requiring a lot of processing power for parsing, and allows you to get access to
+		your data without having to wait in a queue to have your data analyzed.
+	<p>
+
+	<p>
+		This also means that your matches have to have been downloaded to your PC already.  You can do this from the <strong>Watch</strong> tab, then clicking on <strong>Your Matches</strong> inside CS:GO.  A <strong>Download</strong> link will appear in the upper right for a couple of weeks following the match.  Once the link is gone, the demo can no longer be retrieved for addition in to Operation Breakdown.
+	</p>
+
+	<div class="ob-centered" style="margin: 5em auto;">
+		<a class="ob-button-primary" href="client/setup.exe">Download the Client!</a>
+	</div>
+
+	<div class="ob-information-notification">
+		<i class="fa fa-info-circle" aria-hidden="true"></i> Operation Breakdown requires Microsoft .NET Framework 4.5.2 (x86 and x64)
+	</div>
+
+	<h2>Setup</h2>
+
+	<h3>Installation</h3>
+
+	<p>
+		Run setup.exe from the download location. If prompted, install the .NET Framework.
+	</p>
+
+	<h3>Configuration</h3>
+
+	<div class="ob-warning-notification">
+		<i class="fa fa-exclamation-circle" aria-hidden="true"></i> The cilent is still in alpha.  If you encounter errors, try clicking <strong>Refresh</strong> then <strong>Upload</strong> again.
+	</div>
+	
+	<div>
+		<img src="/assets/images/ClientSS.png" style="float: left; margin: auto 2em; "/>
+		
+		<p>
+			The application needs three pieces of information in order to parse and upload demos.
+		</p>
+
+		<ol>
+			<li>The <strong>Demo Location</strong> is the path on your hard drive to the downloaded demos.  Clicking <strong>Select</strong> will allow you to browse to this location</li>
+			<li>Your <strong>Steam ID</strong> in the SteamID64 (You can find this on your <a href="/User/<%= user.steamID %>/Profile">profile</a> page)</li>
+			<li>Your Operation Breakdown <strong>API Token</strong> (also on the <a href="/User/<%= user.steamID %>/Profile">profile</a> page)
+		</ol>
+
+		<p>
+			Once the folder is specified, the complete list of demos will appear.  The <strong>Created</strong> column shows the date and time the
+			demo was downloaded, while the <strong>Status</strong> column shows the date and time the parsed information was transmitted, if the
+			transmission was successful.
+		</p>
+
+		<p>
+			When all of the fields have been filled out, click the <strong>Upload</strong> button to perform the parsing and transmit the data
+		</p>
+	</div>
+
+	<div style="clear:left;"></div>
+
+	<h3>FAQ</h3>
+
+	<p><strong><em>Is this going to hack my computer?</em></strong></p>
+
+	<p>At the end of the day, any time you download a program from the internet you're trusting the application developer.  At no point does Operation Breakdown request your steam credentials (sign in through Steam does <strong>not</strong> allow us to see your username or password at any time)  If you're worried it's a key logger, you can terminate the client before messing with your steam credentials.</p>
+
+	<p>Make sure you download the file from this site and you are fine.  That having been said, use the program at your own risk.</p>
+
+	<p><strong><em>Well you could make the client open source so we can see for ourselves...</em></strong></p>
+
+	<p>There are no plans to make the client open source at this time.</p>
+
+	<p><strong><em>What about Linux/OSX/My Toaster?</strong></em></p>
+
+	<p>We will be gauging interest carefully, but at this time there is no support for Linux or Mac</p>
+
+	<p><strong><em>Can I delete my demos after uploading?</strong></em></p>
+
+	<p>You can, and your data will remain on our servers, however we recommend holding on to them for the time being.  As we add new features during the beta, re-parsing of the data may be needed</p>
+</div>

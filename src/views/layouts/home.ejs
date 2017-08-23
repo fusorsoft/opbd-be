@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+	<% include ../partials/head.ejs %>
+	<link rel="stylesheet" type="text/css" href="/styles/main/home.css"/>
+</head>
+<body>
+
+	<div class="ob-home" data-ng-app="homeApp">
+
+	<% include ../partials/navigation %>
+
+	<%- body %>
+
+	<% include ../partials/footer.ejs %>
+	</div>
+
+	<script>
+	angular.module('homeApp', ['searchApp', 'topUsersApp', 'feedbackApp']);
+	</script>
+</body>
+</html>
