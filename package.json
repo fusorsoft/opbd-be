@@ -4,27 +4,23 @@
   "description": "Operation Breakdown - Back End Services",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:quiet": "eslint --quiet ./src",
-    "lint:quiet:target": "eslint --quiet",
-    "lint:fix": "eslint --quiet --fix",
-    "start": "nodemon index.js"
+    "start": "nodemon src/index.js",
+    "docker": "docker run -p 8083:8081 --env-file ./settings.env -it --rm --name opbdbe fusorsoft/opbdbe"
   },
   "repository": {
     "type": "git",
     "url": "https://git.tsears.org/internal/opbd-be.git"
   },
   "author": "Fusorsoft, LLC",
-  "license": "ISC",
+  "license": "LicenseRef-LICENSE",
   "devDependencies": {
-    "eslint": "^4.16.0",
+    "eslint": "^4.18.2",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "nodemon": "^1.14.11"
+    "eslint-plugin-standard": "^3.0.1"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -39,8 +35,9 @@
     "module": "^1.2.5",
     "mongoose": "^4.13.10",
     "node-uuid": "^1.4.8",
-    "nodemailer": "^4.4.2",
+    "nodemailer": "^4.6.0",
     "nodemailer-smtp-transport": "^2.7.4",
+    "nodemon": "^1.17.1",
     "passport": "^0.4.0",
     "passport-steam": "^1.0.8",
     "q": "^1.5.1"
