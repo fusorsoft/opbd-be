@@ -2,12 +2,12 @@
 <html>
 <head>
 	<% include ../partials/head.ejs %>
-	<link rel="stylesheet" type="text/css" href="/styles/main/breakdown.css"/>
+	<link rel="stylesheet" type="text/css" href="/styles/breakdown.css"/>
 
 	<style>
 
 		#breakdownContent {
-			background-image: url(<%- "/assets/images/backgrounds/" + Math.floor((Math.random() * 8) + 1) + ".jpg" %>);
+			background-image: url(<%- "/images/backgrounds/" + Math.floor((Math.random() * 8) + 1) + ".jpg" %>);
 			background-attachment: fixed;
 			background-repeat: no-repeat;
 			background-color: inherit;
@@ -30,7 +30,7 @@
 			<% include ../partials/navigation %>
 
 			<header>
-				<a href="/"><img src="/assets/images/opbreakdownlogo-horizontal.png"/></a>
+				<a href="/"><img src="/images/opbreakdownlogo-horizontal.png"/></a>
 			</header>
 
 			<%- body %>
@@ -39,7 +39,7 @@
 
 		<div id="content">
 			<div id="loadingOverlay" class="ob-loading-overlay">
-				<img src="/assets/images/ajax-loader.gif"/>
+				<img src="/images/ajax-loader.gif"/>
 				<div><strong>Loading...</strong></div>
 			</div>
 
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 
-		<script src="/js/opBDbreakdown.js"></script>
+		<script src="/js/breakdown.min.js"></script>
 		<% include ../partials/footer.ejs %>
 
 	</div>

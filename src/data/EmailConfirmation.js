@@ -180,7 +180,7 @@ function sendConfirmationEmail (email, userName, token) {
 `<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 <div style="text-align:center;padding: 3em 0px;background-color: #374146;">
-<img src="http://www.operation-breakdown.com/assets/images/opbreakdownlogo-horizontal.png"/>
+<img src="http://www.operation-breakdown.com/images/opbreakdownlogo-horizontal.png"/>
 </div>
 <h1 style="font-family: Raleway, Helvetica, Tahoma, Sans-serif;">
   Hello ${userName},

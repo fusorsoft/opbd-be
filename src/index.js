@@ -11,6 +11,7 @@ const path = require('path')
 const ejs = require('ejs')
 const engine = require('ejs-locals')
 const MongoStore = require('connect-mongo')(session)
+const os = require('os')
 
 const settings = _settings()
 
@@ -57,8 +58,9 @@ app.engine('html', ejs.renderFile)
 app.engine('ejs', engine)
 
 const server = app.listen(settings.APP_PORT, function () {
+  const hostname = os.hostname()
   const host = server.address().address
   const port = server.address().port
 
-  console.log('Operation Breakdown listening at http://%s:%s', host, port)
+  console.log('Operation Breakdown listening at http://%s:%s (%s)', host, port, hostname)
 })
