@@ -11,5 +11,14 @@ cache:
   paths:
     - node_modules/
 
-publish:
+stages:
+  - test
+  
+job:
+  stage: test
   script: npm test
+  except:
+    refs:
+      - master
+      - develop
+    
