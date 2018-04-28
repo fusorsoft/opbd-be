@@ -12,4 +12,4 @@ cache:
     - node_modules/
 
 publish:
-  script: npm run docker-build
+  script: npm test
