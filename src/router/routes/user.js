@@ -48,7 +48,7 @@ module.exports = function (passport, auth) {
 
   router.get('/:userid', (req, res) => {
     var userid = req.params.userid
-    req.session.lastVisit = new Date()
+    // req.session.lastVisit = new Date()
     res.render('matchData', {
       title: 'Match Data',
       user: req.user,

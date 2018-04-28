@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
+    "docker-build": "docker build -t opbd-be .",
     "docker": "docker run -p 8083:8081 --env-file ./settings.env -it --rm --name opbdbe fusorsoft/opbdbe"
   },
   "repository": {
