@@ -15,6 +15,7 @@ test-unit:
     - node -v
     - npm -v
     - npm install
+    - npm run lint
     - npm run unit-test
 
 build-dev:

@@ -9,6 +9,7 @@
     "unit-test": "node jasmine.js",
     "unit-test-watch": "nodemon --watch app/ --watch test/ jasmine.js",
     "docker-build": "docker build -t opbd-be .",
+    "lint": "eslint ./",
     "docker": "docker run -p 8083:8081 --env-file ./settings.env -it --rm --name opbdbe fusorsoft/opbdbe"
   },
   "repository": {
