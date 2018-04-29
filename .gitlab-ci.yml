@@ -1,10 +1,3 @@
-# Official framework image. Look for the different tagged releases at:
-# https://hub.docker.com/r/library/node/tags/
-image: node:8.11
-
-before_script:
-  - npm install
-
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
@@ -13,12 +6,30 @@ cache:
 
 stages:
   - test
+  - build
+  - deploy
   
-job:
+test-unit:
+  image: node:8
   stage: test
-  script: npm test
-  except:
-    refs:
-      - master
-      - develop
+  script:
+    - node -v
+    - npm -v
+    - npm install
+    - npm run unit-test
+
+build-dev:
+  image: docker:stable
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind 
+  stage: build
+  script:
+    - docker build -t opbd-be .
+    - docker -v
+    - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
+    - docker tag opbd-be:latest fusorsoft/opbd-be:develop
+    - docker push fusorsoft/opbd-be:develop
     
+
