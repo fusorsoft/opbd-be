@@ -1,8 +1,14 @@
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
+    
+before_script:
+  - npm install
+  - node -v
+  - npm -v
 
 stages:
   - test
@@ -12,14 +18,20 @@ test-unit:
   image: node:8
   stage: test
   script:
-    - node -v
-    - npm -v
-    - npm install
-    - npm run lint
     - npm run unit-test
+
+lint:
+  image: node:8
+  stage: test
+  script:
+    - npm run lint
+  
 
 build-dev:
   image: docker:stable
+  cache: {}
+  before_script:
+    - ''
   only:
     refs:
       - develop
@@ -37,6 +49,9 @@ build-dev:
     
 build-prod:
   image: docker:stable
+  cache: {}
+  before_script:
+    - ''
   only:
     refs:
       - master
