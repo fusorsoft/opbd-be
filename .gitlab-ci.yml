@@ -7,7 +7,6 @@ cache:
 stages:
   - test
   - build
-  - deploy
   
 test-unit:
   image: node:8
@@ -20,6 +19,9 @@ test-unit:
 
 build-dev:
   image: docker:stable
+  only:
+    refs:
+      - develop
   variables:
     DOCKER_DRIVER: overlay2
   services:
@@ -32,4 +34,19 @@ build-dev:
     - docker tag opbd-be:latest fusorsoft/opbd-be:develop
     - docker push fusorsoft/opbd-be:develop
     
-
+build-prod:
+  image: docker:stable
+  only:
+    refs:
+      - master
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind 
+  stage: build
+  script:
+    - docker build -t opbd-be .
+    - docker -v
+    - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
+    - docker tag opbd-be:latest fusorsoft/opbd-be:master
+    - docker push fusorsoft/opbd-be:master
