@@ -79,10 +79,10 @@ const getCombinedMatchSummaryData = function (player1, player2) {
         lookup[w.breakdownMetadata.breakdownMatchId] = w.playerData[0].MatchTeam
       })
 
-      for (let userMatch of userMatches) {
-        var currentId = userMatch.breakdownMetadata.breakdownMatchId
+      for (const userMatch of userMatches) {
+        const currentId = userMatch.breakdownMetadata.breakdownMatchId
 
-        var matchWithFriend = {
+        const matchWithFriend = {
           friend: player2,
           match: userMatch,
         }
@@ -137,7 +137,7 @@ const saveMatchData = function (existingData, data, userId) {
     })
 
     const playerMatchData = {
-      breakdownMetadata: breakdownMetadata,
+      breakdownMetadata,
       matchMetadata: data.matchMetadata,
       demoFileMetadata: data.demoFileMetadata,
       playerData: p,
@@ -155,11 +155,11 @@ const getSteamIdsForName = function (name) {
   // steam allows multiple people to have the same name....
   const deferred = q.defer()
 
-  q(PlayerMatchData.distinct('playerData.SteamID', {'playerData.Name': name}).lean().exec())
+  q(PlayerMatchData.distinct('playerData.SteamID', { 'playerData.Name': name }).lean().exec())
     .then(function (data) {
       const names = data.map((d) => {
         return {
-          name: name,
+          name,
           steamId: d,
         }
       })
@@ -172,7 +172,7 @@ const getSteamIdsForName = function (name) {
 }
 
 const getMatchDataCountForSteamId = function (steamId) {
-  return q(PlayerMatchData.count({'playerData.SteamID': steamId}).lean().exec())
+  return q(PlayerMatchData.countDocuments({ 'playerData.SteamID': steamId }).lean().exec())
 }
 
 const getPlayerFromMatchQuery = function (query, limit) {
@@ -180,8 +180,8 @@ const getPlayerFromMatchQuery = function (query, limit) {
 
   const queryObj = {
     'playerData.Name': {
-      '$regex': query,
-      '$options': 'i',
+      $regex: query,
+      $options: 'i',
     },
   }
 
@@ -195,6 +195,8 @@ const getPlayerFromMatchQuery = function (query, limit) {
     q.all(steamIdPromises).then(steamIds => {
       const concatArray = []
       const countPromises = []
+
+      const i = 0
 
       steamIds.forEach((s) => {
         s.forEach((t) => {
@@ -223,11 +225,14 @@ const getPlayerFromMatchQuery = function (query, limit) {
         deferred.reject(err)
       })
     }, function (err) {
+      console.log('error', err)
       deferred.reject(err)
     })
   },
   function (err) {
     deferred.reject(err)
+  }).catch((e) => {
+    console.error(e)
   })
 
   return deferred.promise

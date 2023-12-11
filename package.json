@@ -9,6 +9,7 @@
     "unit-test": "node jasmine.js",
     "unit-test-watch": "nodemon --watch app/ --watch test/ jasmine.js",
     "docker-build": "docker build -t opbd-be .",
+    "docker-attach": "docker exec -i -t opbd-be_be_1 /bin/bash",
     "lint": "eslint ./",
     "docker": "docker run -p 8083:8081 --env-file ./settings.env -it --rm --name opbdbe fusorsoft/opbdbe"
   },
@@ -19,38 +20,39 @@
   "author": "Fusorsoft, LLC",
   "license": "LicenseRef-LICENSE",
   "devDependencies": {
-    "eslint": "^4.18.2",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "jasmine": "^3.1.0",
-    "rewire": "^4.0.1"
+    "eslint": "^8.55.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "jasmine": "^5.1.0",
+    "rewire": "^7.0.0"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
-    "connect-mongo": "^2.0.1",
+    "connect-mongo": "^5.1.0",
     "dns": "^0.2.2",
-    "dotenv": "^4.0.0",
-    "ejs": "^2.5.7",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
     "ejs-locals": "^1.0.2",
-    "express": "^4.16.2",
-    "express-session": "^1.15.6",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "module": "^1.2.5",
-    "mongoose": "^4.13.10",
+    "mongoose": "^8.0.3",
     "node-uuid": "^1.4.8",
-    "nodemailer": "^4.6.0",
+    "nodemailer": "^6.9.7",
     "nodemailer-smtp-transport": "^2.7.4",
-    "nodemon": "^1.17.1",
-    "passport": "^0.4.0",
-    "passport-steam": "^1.0.8",
+    "nodemon": "^3.0.2",
+    "passport": "^0.7.0",
+    "passport-steam": "^1.0.18",
     "q": "^1.5.1"
   },
   "nodemonConfig": {
-    "ignore": ["node_modules/*"],
+    "ignore": [
+      "node_modules/*"
+    ],
     "delay": "2000"
   }
 }

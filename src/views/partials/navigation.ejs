@@ -1,10 +1,12 @@
+<div class="ob-error-notification" style="margin-bottom: 0">
+  Operation Breakdown is in read-only mode.  It now exists solely as a portfolio piece.  Source available on github <a href="https://github.com/orgs/fusorsoft/repositories">here</a>
+</div>
 <nav>
 	<button class="hamburger" id="ob-global-nav-toggle">&#9776;</button>
 	<ul id="globalNavigation">
 		<li><a href="/">Home</a></li>
 		<li><a href="/news">News</a></li>
 		<li><a href="/about">About</a></li>
-		<li><a href="/donate">Donate</a></li>
 		<% if (user) { %>
 		<li><a href="/User/<%- user.steamID %>">My Data</a></li>
 		<% } %>
@@ -12,13 +14,4 @@
 		<li><a href="/Admin">Admin</a></li>
 		<% } %>
 	</ul>
-
-	<% if (user) { %>
-		<a id="userActionsToggle"><%= user.username %> <i class='fa fa-chevron-down'></i></a>
-		<% include userActionsMenu %>
-	<% } else { %>
-		<div class="steamLogin">
-			<a href="/User/Login/Steam" class="ob-nav-signin"><img src="/images/sits_small.png"/></a>
-		</div>
-	<% } %>
 </nav>

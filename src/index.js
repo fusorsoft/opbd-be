@@ -10,7 +10,7 @@ const routes = require('./router/routes')
 const path = require('path')
 const ejs = require('ejs')
 const engine = require('ejs-locals')
-const MongoStore = require('connect-mongo')(session)
+const MongoStore = require('connect-mongo')
 const os = require('os')
 
 const settings = _settings()
@@ -28,29 +28,30 @@ app.use(bodyParser.json({
   limit: '4mb',
 }))
 
-mongoose.connect(settings.MONGODB_CONNECTION_STRING, { useMongoClient: true })
+mongoose.connect(settings.MONGODB_CONNECTION_STRING)
   .then(() => {
     console.log('Connected to db @ ' + settings.MONGODB_CONNECTION_STRING)
     app.use(session({
       secret: settings.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
-      store: new MongoStore({
-        mongooseConnection: mongoose.connection,
+      store: MongoStore.create({
+        mongoUrl: settings.MONGODB_CONNECTION_STRING,
       }),
     }))
+
+    app.use(passport.initialize())
+    app.use(passport.session())
+
+    app.use(flash())
+
+    passportInit(passport)
+    routes(app, passport)
   })
   .catch(err => {
     console.error('error connecting to mongo @ ', settings.MONGODB_CONNECTION_STRING)
     console.error(err)
   })
-
-app.use(flash())
-app.use(passport.initialize())
-app.use(passport.session())
-
-passportInit(passport)
-routes(app, passport)
 
 app.set('views', path.resolve(__dirname, 'views'))
 app.set('view engine', 'ejs')
